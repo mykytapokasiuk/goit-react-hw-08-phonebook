@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import useCheckAuth from 'hooks/useCheckAuth';
+import { refreshUserThunk } from 'redux/authentication/operations';
 import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -6,7 +8,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import css from './NavigationBar.module.css';
 
 const NavigationBar = () => {
-  const { authentificated, handleLogOut, userData } = useCheckAuth();
+  const { authentificated, handleLogOut, userData, token, dispatch } =
+    useCheckAuth();
+
+  useEffect(() => {
+    if (!token || authentificated) return;
+
+    dispatch(refreshUserThunk());
+  }, [token, dispatch, authentificated]);
 
   return (
     <Navbar expand="xl" bg="secondary" data-bs-theme="dark">
@@ -28,6 +37,9 @@ const NavigationBar = () => {
                 >
                   Log Out
                 </Button>
+                <Nav.Link href="#">
+                  Logged in as {userData.name} | {userData.email}
+                </Nav.Link>
               </>
             ) : (
               <>
@@ -36,9 +48,6 @@ const NavigationBar = () => {
               </>
             )}
           </Nav>
-          <Navbar.Text>
-            {/*Signed in as: {userData.name} | {userData.email}*/}
-          </Navbar.Text>
         </Navbar.Collapse>
       </Container>
     </Navbar>

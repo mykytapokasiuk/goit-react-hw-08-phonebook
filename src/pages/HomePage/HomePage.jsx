@@ -14,7 +14,7 @@ const HomePage = () => {
           <Card className={css.cardContainer}>
             <Card.Img variant="top" src={noteBook} />
             <Card.Body className={css.cardBody}>
-              {/*<Card.Title>Hello, {userData.name}!</Card.Title>*/}
+              <Card.Title>Hello, {userData.name}!</Card.Title>
               <Card.Text>
                 Phonebook allows you to add, delete, and update your contacts.
                 Enjoy!

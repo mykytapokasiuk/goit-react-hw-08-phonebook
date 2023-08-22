@@ -1,59 +1,45 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { selectAuthentificated } from 'redux/authentication/selectors';
-import { loginUserThunk } from 'redux/authentication/operations';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import css from './LoginForm.module.css';
+import useLoginUser from 'hooks/useLoginUser';
 
 const LoginForm = () => {
-  const dispatch = useDispatch();
-  const authenticated = useSelector(selectAuthentificated);
-
-  const handleSubmit = event => {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-
-    const email = form.elements.userEmail.value;
-    const password = form.elements.userPassword.value;
-
-    dispatch(
-      loginUserThunk({
-        email,
-        password,
-      })
-    );
-  };
-
+  const { authenticated, handleSubmit } = useLoginUser();
   if (authenticated) return <Navigate to="/contacts" />;
 
   return (
-    <div>
-      <h1>Login Into Your Account</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Email:</p>
-          <input
-            name="userEmail"
-            type="email"
-            placeholder="Enter your email"
-            required
-          />
-        </label>
-        <br />
-        <label>
-          <p>Password:</p>
-          <input
-            name="userPassword"
-            type="password"
-            placeholder="Enter your password"
-            required
-            minLength={7}
-          />
-        </label>
-        <br />
-        <button type="submit">Sign In</button>
-      </form>
-    </div>
+    <section className={css.loginSection}>
+      <div className={css.container}>
+        <h1>Login Into Your Account</h1>
+        <Form onSubmit={handleSubmit} className={css.form}>
+          <Form.Group className="mb-3" controlId="userEmail">
+            <Form.Label className={css.formLabel}>Email</Form.Label>
+            <Form.Control
+              type="email"
+              name="userEmail"
+              placeholder="Enter email"
+              required
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="userPassword">
+            <Form.Label className={css.formLabel}>Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="userPassword"
+              placeholder="Enter password"
+              minLength={7}
+              required
+            />
+          </Form.Group>
+          <Button variant="outline-warning" type="submit">
+            Sign In
+          </Button>
+        </Form>
+      </div>
+    </section>
   );
 };
 
