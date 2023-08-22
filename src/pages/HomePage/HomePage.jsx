@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import useCheckAuth from 'hooks/useCheckAuth';
@@ -21,7 +22,8 @@ const HomePage = () => {
               </Card.Text>
               <Button
                 className={css.cardBtn}
-                href="/contacts"
+                as={Link}
+                to="/contacts"
                 type="button"
                 size="sm"
                 variant="outline-warning"

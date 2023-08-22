@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import useCheckAuth from 'hooks/useCheckAuth';
 import { refreshUserThunk } from 'redux/authentication/operations';
 import { Button } from 'react-bootstrap';
@@ -20,14 +21,20 @@ const NavigationBar = () => {
   return (
     <Navbar expand="xl" bg="secondary" data-bs-theme="dark">
       <Container>
-        <Navbar.Brand href="/">Phonebook</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">
+          Phonebook
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link as={Link} to="/">
+              Home
+            </Nav.Link>
             {authentificated ? (
               <>
-                <Nav.Link href="/contacts">Contacts</Nav.Link>
+                <Nav.Link as={Link} to="/contacts">
+                  Contacts
+                </Nav.Link>
                 <Button
                   className={css.navBarBtn}
                   type="button"
@@ -43,8 +50,12 @@ const NavigationBar = () => {
               </>
             ) : (
               <>
-                <Nav.Link href="/login">Login</Nav.Link>
-                <Nav.Link href="/register">Register</Nav.Link>
+                <Nav.Link as={Link} to="/login">
+                  Login
+                </Nav.Link>
+                <Nav.Link as={Link} to="/register">
+                  Register
+                </Nav.Link>
               </>
             )}
           </Nav>
