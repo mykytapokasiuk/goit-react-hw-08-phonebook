@@ -34,7 +34,11 @@ const LoginForm = () => {
               required
             />
           </Form.Group>
-          <Button variant="outline-warning" type="submit">
+          <Button
+            className={css.logInFormBtn}
+            variant="outline-warning"
+            type="submit"
+          >
             Sign In
           </Button>
         </Form>

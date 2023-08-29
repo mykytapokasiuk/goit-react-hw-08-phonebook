@@ -49,7 +49,11 @@ const RegisterForm = () => {
               required
             />
           </Form.Group>
-          <Button variant="outline-warning" type="submit">
+          <Button
+            className={css.registerFormBtn}
+            variant="outline-warning"
+            type="submit"
+          >
             Sign Up
           </Button>
         </Form>

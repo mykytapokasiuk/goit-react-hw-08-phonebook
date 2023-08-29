@@ -33,7 +33,11 @@ const ContactForm = () => {
             required
           />
         </Form.Group>
-        <Button variant="outline-warning" type="submit">
+        <Button
+          className={css.contactFormBtn}
+          variant="outline-warning"
+          type="submit"
+        >
           Submit
         </Button>
       </Form>

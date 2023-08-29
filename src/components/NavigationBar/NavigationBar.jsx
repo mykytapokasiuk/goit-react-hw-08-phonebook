@@ -19,7 +19,12 @@ const NavigationBar = () => {
   }, [token, dispatch, authentificated]);
 
   return (
-    <Navbar expand="xl" bg="secondary" data-bs-theme="dark">
+    <Navbar
+      className={css.navBar}
+      expand="xl"
+      bg="secondary"
+      data-bs-theme="dark"
+    >
       <Container>
         <Navbar.Brand as={Link} to="/">
           Phonebook
@@ -44,9 +49,6 @@ const NavigationBar = () => {
                 >
                   Log Out
                 </Button>
-                <Nav.Link href="#">
-                  Logged in as {userData.name} | {userData.email}
-                </Nav.Link>
               </>
             ) : (
               <>
@@ -59,6 +61,13 @@ const NavigationBar = () => {
               </>
             )}
           </Nav>
+          {authentificated && (
+            <Navbar.Text className={css.navBarText}>
+              Logged in as{' '}
+              <span className={css.userTextColor}>{userData.name}</span> ||{' '}
+              <span className={css.userTextColor}>{userData.email}</span>
+            </Navbar.Text>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>

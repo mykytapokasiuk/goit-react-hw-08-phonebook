@@ -13,13 +13,20 @@
     width: 330px;
 }
 
+.userTextColor {
+    color: #ffc107;
+}
+
 .cardBody {
     background-color: rgb(108 117 125);
     color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.05em;
 }
 
 .cardBtn {
     margin-top: 15px;
+
 }
 
 .welcomeContainer {
@@ -31,5 +38,4 @@
 
 p {
     font-size: 20px;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
 }
